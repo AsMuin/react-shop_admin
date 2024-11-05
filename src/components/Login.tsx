@@ -1,25 +1,21 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import { adminLogin } from '@/api/Admin';
 function Login({ setToken }: { setToken: (token: string) => void }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     async function Login(e: React.FormEvent<HTMLFormElement>) {
         try {
             e.preventDefault();
-            const response = await axios.post('/api/user/admin', {
-                email,
-                password
-            });
-            console.log(response);
-            if (response.data.success && response.data.token) {
-                setToken(response.data.token);
-            } else {
-                toast.error(response.data.message);
+            const { token } = await adminLogin({ email, password });
+            console.log(token);
+            if (token) {
+                setToken(token);
+                toast.success('登录成功');
             }
         } catch (error: any) {
             console.error(error);
-            toast.error(error.message);
+            // toast.error(error.message);
         }
     }
     return (

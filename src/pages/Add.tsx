@@ -1,10 +1,8 @@
 import { assets } from '@/assets/assets';
-import axios from 'axios';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
+import { addProduct } from '@/api/Product';
+import { toast } from 'react-toastify';
 function Add() {
-    const { state } = useLocation();
     const Category = [
         { value: 'Men', label: '男人' },
         { value: 'Women', label: '女人' },
@@ -22,7 +20,7 @@ function Add() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [subcategory, setSubcategory] = useState('');
+    const [subCategory, setSubCategory] = useState('');
     const [price, setPrice] = useState('');
     const [sizes, setSizes] = useState<string[]>([]);
     const [bestseller, setBestseller] = useState(false);
@@ -33,7 +31,7 @@ function Add() {
             formData.append('name', name);
             formData.append('description', description);
             formData.append('category', category);
-            formData.append('subcategory', subcategory);
+            formData.append('subCategory', subCategory);
             formData.append('price', price);
             formData.append('bestseller', bestseller ? 'true' : 'false');
             if (image1) {
@@ -51,8 +49,8 @@ function Add() {
             if (sizes.length > 0) {
                 formData.append('sizes', JSON.stringify(sizes));
             }
-            const response = await axios.post('/api/product/add', formData);
-            console.log(response.data);
+            const response = await addProduct(formData);
+            toast.success(response.message);
         } catch (err) {
             console.error(err);
         }
@@ -114,7 +112,7 @@ function Add() {
                     </div>
                     <div>
                         <p className="mb-2">商品类别</p>
-                        <select className="w-full px-3 py-2" onChange={e => setSubcategory(e.target.value)}>
+                        <select className="w-full px-3 py-2" onChange={e => setSubCategory(e.target.value)}>
                             {SubCategory.map(item => (
                                 <option value={item.value} key={item.value}>
                                     {item.label}
