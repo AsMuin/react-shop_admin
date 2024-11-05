@@ -1,6 +1,6 @@
 import request from '.';
-async function adminLogin({ email, password }: { email: string; password: string }) {
-    return request({ url: '/user/admin', method: 'POST', data: { email, password } });
+async function adminLogin<T = any>({ email, password }: { email: string; password: string }) {
+    return request<T>({ url: '/user/admin', method: 'POST', data: { email, password } });
 }
 
 export { adminLogin };

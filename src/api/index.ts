@@ -1,4 +1,5 @@
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
+import axios from 'axios';
+import type { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { toast } from 'react-toastify';
 interface IData<T = any> {
     success: boolean;
@@ -11,7 +12,6 @@ const Axios = axios.create({
     baseURL
 });
 
-// const navigate=useNavigate();
 Axios.interceptors.request.use(
     config => {
         if (config.url === '/user/admin') {

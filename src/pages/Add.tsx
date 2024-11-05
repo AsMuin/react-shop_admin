@@ -19,8 +19,8 @@ function Add() {
     const [image4, setImage4] = useState<File | null | undefined>(null);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [subCategory, setSubCategory] = useState('');
+    const [category, setCategory] = useState(Category[0].value);
+    const [subCategory, setSubCategory] = useState(SubCategory[0].value);
     const [price, setPrice] = useState('');
     const [sizes, setSizes] = useState<string[]>([]);
     const [bestseller, setBestseller] = useState(false);
@@ -51,6 +51,15 @@ function Add() {
             }
             const response = await addProduct(formData);
             toast.success(response.message);
+            setName('');
+            setDescription('');
+            setPrice('');
+            setSizes([]);
+            setBestseller(false);
+            setImage1(null);
+            setImage2(null);
+            setImage3(null);
+            setImage4(null);
         } catch (err) {
             console.error(err);
         }
@@ -62,19 +71,19 @@ function Add() {
                     <p className="mb-2 ">上传商品图片</p>
                     <div className="flex gap-2 ">
                         <label htmlFor="image1">
-                            <img className="w-20" src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
+                            <img className="w-20 cursor-pointer" src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
                             <input onChange={e => setImage1(e.target!.files?.[0])} type="file" id="image1" hidden />
                         </label>
                         <label htmlFor="image2">
-                            <img className="w-20" src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
+                            <img className="w-20 cursor-pointer" src={!image2 ? assets.upload_area : URL.createObjectURL(image2)} alt="" />
                             <input onChange={e => setImage2(e.target!.files?.[0])} type="file" id="image2" hidden />
                         </label>
                         <label htmlFor="image3">
-                            <img className="w-20" src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
+                            <img className="w-20 cursor-pointer" src={!image3 ? assets.upload_area : URL.createObjectURL(image3)} alt="" />
                             <input onChange={e => setImage3(e.target!.files?.[0])} type="file" id="image3" hidden />
                         </label>
                         <label htmlFor="image4">
-                            <img className="w-20" src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
+                            <img className="w-20 cursor-pointer" src={!image4 ? assets.upload_area : URL.createObjectURL(image4)} alt="" />
                             <input onChange={e => setImage4(e.target!.files?.[0])} type="file" id="image4" hidden />
                         </label>
                     </div>
