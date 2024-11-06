@@ -52,7 +52,7 @@ Axios.interceptors.response.use(
     }
 );
 async function request<T>(config: AxiosRequestConfig): Promise<IData<T>> {
-    const response = await Axios.request<IData<T>>(config);
-    return response.data;
+    const Response = await Axios.request<IData<T>>(config);
+    return Response.data;
 }
 export default request;
