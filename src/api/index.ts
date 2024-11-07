@@ -51,7 +51,7 @@ Axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-async function request<T>(config: AxiosRequestConfig): Promise<IData<T>> {
+async function request<T = any>(config: AxiosRequestConfig): Promise<IData<T>> {
     const Response = await Axios.request<IData<T>>(config);
     return Response.data;
 }

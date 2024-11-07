@@ -50,7 +50,7 @@ function Add() {
                 formData.append('sizes', JSON.stringify(sizes));
             }
             const response = await addProduct<null>(formData);
-            console.log(response.data)
+            console.log(response.data);
             toast.success(response.message);
             setName('');
             setDescription('');
