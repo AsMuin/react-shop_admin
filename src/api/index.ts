@@ -19,7 +19,6 @@ Axios.interceptors.request.use(
         } else {
             const token = localStorage.getItem('token');
             if (!token) {
-                toast.warn('请先登录', { progress: 1 });
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 2500);
