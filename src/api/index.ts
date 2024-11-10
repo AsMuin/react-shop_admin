@@ -22,7 +22,7 @@ Axios.interceptors.request.use(
                 setTimeout(() => {
                     window.location.href = '/';
                 }, 2500);
-                return Promise.reject('请先登录');
+                return Promise.reject(new Error('请先登录'));
             } else {
                 config.headers.Authorization = token;
                 return config;

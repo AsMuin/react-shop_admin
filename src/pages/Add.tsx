@@ -1,6 +1,6 @@
 import { assets } from '@/assets/assets';
 import { useState } from 'react';
-import { addProduct } from '@/api/Product';
+import { addProduct } from '@/api/product';
 import { toast } from 'react-toastify';
 function Add() {
     const Category = [
@@ -67,10 +67,10 @@ function Add() {
     }
     return (
         <>
-            <form className="flex flex-col w-full items-start gap-3" onSubmit={onSubmit}>
+            <form className="flex w-full flex-col items-start gap-3" onSubmit={onSubmit}>
                 <div>
-                    <p className="mb-2 ">上传商品图片</p>
-                    <div className="flex gap-2 ">
+                    <p className="mb-2">上传商品图片</p>
+                    <div className="flex gap-2">
                         <label htmlFor="image1">
                             <img className="w-20 cursor-pointer" src={!image1 ? assets.upload_area : URL.createObjectURL(image1)} alt="" />
                             <input onChange={e => setImage1(e.target!.files?.[0])} type="file" id="image1" hidden />
@@ -109,7 +109,7 @@ function Add() {
                         placeholder="请输入商品描述"
                     />
                 </div>
-                <div className="flex flex-col sm:flex-row gap-2 w-full sm:gap-8">
+                <div className="flex w-full flex-col gap-2 sm:flex-row sm:gap-8">
                     <div>
                         <p className="mb-2">适合人群</p>
                         <select className="w-full px-3 py-2" onChange={e => setCategory(e.target.value)}>
@@ -149,18 +149,18 @@ function Add() {
                             <div
                                 onClick={() => setSizes(prev => (prev.includes(size) ? prev.filter(item => item !== size) : [...prev, size]))}
                                 key={size}>
-                                <p className={`${sizes.includes(size) ? 'bg-pink-100' : 'bg-slate-200'} px-3 py-1 cursor-pointer`}>{size}</p>
+                                <p className={`${sizes.includes(size) ? 'bg-pink-100' : 'bg-slate-200'} cursor-pointer px-3 py-1`}>{size}</p>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="flex gap-2 mt-2">
+                <div className="mt-2 flex gap-2">
                     <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id="bestseller" />
                     <label className="cursor-pointer" htmlFor="bestseller">
                         设为精选商品
                     </label>
                 </div>
-                <button type="submit" className="w-28 py-3 mt-4 bg-black text-white">
+                <button type="submit" className="mt-4 w-28 bg-black py-3 text-white">
                     确定添加
                 </button>
             </form>
