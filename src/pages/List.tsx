@@ -53,7 +53,7 @@ function List() {
                 {list.map(item => (
                     <div
                         className="grid grid-cols-[1fr_3fr_1fr] items-center gap-2 border px-2 py-1 text-sm md:grid-cols-[1fr_3fr_1fr_1fr_1fr]"
-                        key={item.name}>
+                        key={item._id}>
                         <img className="w-12" src={item.image[0]} alt="" />
                         <p>{item.name}</p>
                         <p>{item.category}</p>

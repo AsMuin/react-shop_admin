@@ -13,7 +13,7 @@ function App() {
     }, [token]);
     return (
         <>
-            <div className="bg-gray-50  min-h-screen">
+            <div className="min-h-screen bg-gray-50">
                 <ToastContainer />
                 {token === '' ? (
                     <Login setToken={setToken} />
@@ -23,7 +23,7 @@ function App() {
                         <hr />
                         <div className="flex w-full">
                             <SideBar token={token} />
-                            <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
+                            <div className="mx-auto my-8 ml-[max(5vw,25px)] w-[70%] text-base text-gray-600">
                                 <Suspense fallback={<div>Loading...</div>}>
                                     <Outlet></Outlet>
                                 </Suspense>
