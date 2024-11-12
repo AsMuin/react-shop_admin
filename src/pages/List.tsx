@@ -18,20 +18,16 @@ function List() {
     async function fetchProductList() {
         try {
             const response = await getProductList<IProduct[]>();
-            if (response.success) {
-                setList(response.data!);
-            }
+            setList(response.data!);
         } catch (e) {
             console.error(e);
         }
     }
     async function handleRemoveProduct(productId: string) {
         try {
-            const response = await removeProduct(productId);
-            if (response.success) {
-                toast.success('删除成功');
-                fetchProductList();
-            }
+            await removeProduct(productId);
+            toast.success('删除成功');
+            fetchProductList();
         } catch (e) {
             console.error(e);
         }

@@ -66,9 +66,7 @@ function Order() {
         try {
             const response = await getOrderList<API_OrderData[]>();
             console.log(response);
-            if (response.success) {
-                setOrderList(response.data!);
-            }
+            setOrderList(response.data!);
         } catch (error) {
             console.error(error);
         }
@@ -76,9 +74,7 @@ function Order() {
     async function handleUpdateOrderStatus(status: string, orderId: string) {
         try {
             const response = await updateOrderStatus<API_OrderData>({ status, orderId });
-            if (response.success) {
-                getAllOrderList();
-            }
+            getAllOrderList();
             console.log(response);
         } catch (e) {
             console.error(e);
